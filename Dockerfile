@@ -1,20 +1,27 @@
-# Base image
-FROM node:18
-
-# Create app directory
+# Naming our image to be use in later steps
+FROM node:18 as build       
 WORKDIR /usr/src/app
-
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
-
-# Install app dependencies
+COPY package.json .
+COPY package-lock.json .
 RUN npm install
-
-# Bundle app source
 COPY . .
-
-# Creates a "dist" folder with the production build
+RUN npx prisma generate
 RUN npm run build
-
-# Start the server using the production build
-CMD [ "node", "dist/main.js" ]
+# Base smaller node image
+FROM node:18-slim                                                                           
+# Add missing dependency needed for prisma
+RUN apt update && apt install libssl-dev -y --no-install-recommends                         
+WORKDIR /usr/src/app
+# Copy de dist folder generated in the previous step
+COPY --from=build /usr/src/app/dist ./dist                                                  
+# Copy env variables to use
+COPY --from=build /usr/src/app/.env .env                                                    
+COPY --from=build /usr/src/app/package.json .
+COPY --from=build /usr/src/app/package-lock.json .
+# Install without  dev dependencies to save some space
+RUN npm install --omit=dev                                                                  
+# Copy generated prisma client from previous step
+COPY --from=build /usr/src/app/node_modules/.prisma/client  ./node_modules/.prisma/client   
+ENV NODE_ENV production
+EXPOSE 3000
+CMD ["npm", "run","start:prod"]
