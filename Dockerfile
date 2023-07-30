@@ -15,7 +15,7 @@ WORKDIR /usr/src/app
 # Copy de dist folder generated in the previous step
 COPY --from=build /usr/src/app/dist ./dist                                                  
 # Copy env variables to use
-COPY --from=build /usr/src/app/.env .env                                                    
+# COPY --from=build /usr/src/app/.env .env                                                    
 COPY --from=build /usr/src/app/package.json .
 COPY --from=build /usr/src/app/package-lock.json .
 # Install without  dev dependencies to save some space
