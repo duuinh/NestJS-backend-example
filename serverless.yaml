@@ -19,5 +19,7 @@ functions:
           method: any
           path: /{proxy+}
 
-# package:
+package:
 #   individually: true
+  include:
+    - "**/node_modules/.prisma/client"
