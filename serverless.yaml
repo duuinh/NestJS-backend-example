@@ -5,6 +5,11 @@ frameworkVersion: '3'
 plugins:
   - serverless-jetpack
   - serverless-offline
+  - serverless-webpack
+  - serverless-webpack-prisma
+custom:
+  webpack:
+    includeModules: true
 
 provider:
   name: aws
