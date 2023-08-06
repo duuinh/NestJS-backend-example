@@ -1,5 +1,7 @@
 # Naming our image to be use in later steps
-FROM node:18 as build       
+FROM node:18 as build
+ARG DATABASE_URL
+ENV DATABASE_URL=$DATABASE_URL
 WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
