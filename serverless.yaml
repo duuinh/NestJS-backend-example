@@ -23,8 +23,3 @@ functions:
       - http:
           method: any
           path: /{proxy+}
-
-package:
-#   individually: true
-  include:
-    - "**/node_modules/.prisma/client"

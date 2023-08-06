@@ -29,9 +29,7 @@ jobs:
         run: sls config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
       - name: Install npm dependencies
-        run: |
-          npx prisma generate
-          npm install
+        run: npm install
 
       - name: build
         run: npm run build
