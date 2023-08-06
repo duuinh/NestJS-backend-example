@@ -19,5 +19,5 @@ functions:
           method: any
           path: /{proxy+}
 
-package:
-  individually: true
+# package:
+#   individually: true
