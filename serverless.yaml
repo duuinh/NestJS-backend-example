@@ -16,7 +16,7 @@ provider:
   name: aws
   runtime: nodejs16.x
   region: eu-north-1
-
+  environment:
 functions:
   api:
     handler: dist/lambda.handler
