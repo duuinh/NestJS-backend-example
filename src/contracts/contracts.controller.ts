@@ -22,6 +22,11 @@ export class ContractsController {
     return this.contractsService.contracts({});
   }
 
+  @Get('/:id')
+  async getContractById(@Param('id') id: string): Promise<ContractModel> {
+    return this.contractsService.contract({ id: id });
+  }
+
   @Post('/')
   async createContract(
     @Body()

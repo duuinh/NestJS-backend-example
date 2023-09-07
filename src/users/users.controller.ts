@@ -24,6 +24,11 @@ export class UsersController {
     return this.usersService.users({});
   }
 
+  @Get('/:id')
+  async getUserById(@Param('id') id: string): Promise<UserModel> {
+    return this.usersService.user({ id: id });
+  }
+
   @Post('/')
   async signupUser(
     @Body()
