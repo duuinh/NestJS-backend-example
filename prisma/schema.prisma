@@ -44,7 +44,6 @@ type Location {
 model Contract {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 	isPublic Boolean
-	pool String
   participants Participant
   figures String[]
   title String
