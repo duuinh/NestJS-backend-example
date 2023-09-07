@@ -5,11 +5,11 @@ export class CreateContractDto {
   @ApiProperty()
   isPublic: boolean;
 
-  @ApiProperty({ required: false, default: [] })
-  pool?: string[];
+  @ApiProperty()
+  participants: Prisma.ParticipantCreateInput;
 
   @ApiProperty({ required: false, default: [] })
-  ads?: string[];
+  figures?: string[];
 
   @ApiProperty()
   title: string;
@@ -27,11 +27,8 @@ export class CreateContractDto {
   currency: string;
 
   @ApiProperty()
-  expired_date: Date;
-
-  @ApiProperty()
-  location: string;
+  expiredDate: Date;
 
   @ApiProperty({ required: false, default: null })
-  details?: Prisma.ContractDetailsCreateInput;
+  location?: Prisma.LocationCreateInput;
 }

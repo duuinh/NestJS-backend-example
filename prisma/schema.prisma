@@ -28,43 +28,30 @@ model User {
   address String
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
-
-  @@map("users")
 }
 
-type ContractDetails {
-	figures String[]
-	fulfillPriority FulfillPriority?
-	shareSafe ShareSafe?
-	signatures Signature[]
+type Participant {
+	provider String
+  receivers  String[]
+  pool String
 }
 
-type FulfillPriority {
-  for String
-	details String
-}
-
-type ShareSafe {
-  for String
-	details String
-}
-
-type Signature {
-  name String
-  img_url String
+type Location {
+	lat String
+  lon String
 }
 
 model Contract {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 	isPublic Boolean
-	pool String[]
-  ads String[]
+	pool String
+  participants Participant
+  figures String[]
   title String
   category String
   description String?
   price Float
   currency String @default("SEK")
-  expired_date DateTime
-  location String?
-  details ContractDetails?
+  expiredDate DateTime
+  location Location?
 }
