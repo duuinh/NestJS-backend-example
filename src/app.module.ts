@@ -8,9 +8,9 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ContractsService } from './contracts/contracts.service';
 import { ContractsController } from './contracts/contracts.controller';
 import { ContractsModule } from './contracts/contracts.module';
-import { S3UploadController } from './s3/S3Upload.controller';
-import { S3UploadService } from './s3/S3Upload.service';
-import { S3UploadModule } from './s3/S3Upload.module';
+import { S3UploadController } from './s3/s3Upload.controller';
+import { S3UploadService } from './s3/s3Upload.service';
+import { S3UploadModule } from './s3/s3Upload.module';
 
 @Module({
   imports: [UsersModule, PrismaModule, ContractsModule, S3UploadModule],
